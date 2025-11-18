@@ -54,12 +54,12 @@
       "https://github.com/tallero"
   },
   "devDependencies": {
+    "crash-js-webpack":
+      "^0.0.2",
     "eslint":
       "^9.32.0",
     "serve":
       "^14.2.5",
-    "split-file":
-      "npm:@themartiancompany/split-file@3.2.1",
     "webpack":
       "^5.102.1",
     "webpack-cli":
@@ -67,14 +67,14 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.64",
-    "yargs":
-      "18.0.0"
+      "^0.1.65",
+    "split-file":
+      "npm:@themartiancompany/split-file@2.3.2"
   },
   "type":
     "commonjs",
   "main":
-    "encoding-tools",
+    "tmcsplit",
   "scripts": {
     "build":
       "make build-npm",
