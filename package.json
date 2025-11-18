@@ -1,0 +1,90 @@
+{
+  "name":
+    "tmcsplit",
+  "version":
+    "0.0.1",
+  "description":
+    "Basic Javascript implementation of GNU Split.",
+  "funding": {
+    "type":
+      "patreon",
+    "url":
+      "https://patreon.com/tallero"
+  },
+  "man":
+    "./man/tmcsplit.1",
+  "files": [
+    "AUTHORS.rst",
+    "COPYING",
+    "README.md",
+    "package.json",
+    "tmcsplit.js",
+    "tmcsplit",
+    "fs-worker.js",
+    "fs-worker.webpack.config.js",
+    "index.html",
+    "serve.json",
+    "webpack.config.js"
+  ],
+  "keywords": [
+    "ur",
+    "themartiancompany",
+    "dogeos"
+  ],
+  "homepage":
+    "https://github.com/themartiancompany/tmcsplit",
+  "bugs": {
+    "url":
+      "https://github.com/themartiancompany/tmcsplit/issues"
+  },
+  "repository": {
+    "type":
+      "git",
+    "url":
+      "git+https://github.com/themartiancompany/tmcsplit.git"
+  },
+  "license":
+    "AGPL-3.0-or-later",
+  "author": {
+    "name":
+      "Pellegrino Prevete",
+    "email":
+      "pellegrinoprevete@gmail.com",
+    "url":
+      "https://github.com/tallero"
+  },
+  "devDependencies": {
+    "eslint":
+      "^9.32.0",
+    "serve":
+      "^14.2.5",
+    "split-file":
+      "npm:@themartiancompany/split-file@3.2.1",
+    "webpack":
+      "^5.102.1",
+    "webpack-cli":
+      "^6.0.1"
+  },
+  "dependencies": {
+    "crash-js":
+      "^0.1.64",
+    "yargs":
+      "18.0.0"
+  },
+  "type":
+    "commonjs",
+  "main":
+    "encoding-tools",
+  "scripts": {
+    "build":
+      "make build-npm",
+    "lint":
+      "npx eslint .",
+    "publish-pnm":
+      "npm run build && npm publish --access public",
+    "start":
+      "serve -c 'serve.json'",
+    "test":
+      "echo \"Error: no test specified\" && exit 1"
+  }
+}
