@@ -76,8 +76,14 @@
   "main":
     "tmcsplit",
   "scripts": {
+    "build-fs-worker":
+      "npx webpack --mode 'production' --config 'fs-worker.webpack.config.cjs' --stats-error-details",
+    "build-lib":
+      "npx webpack --mode 'production' --config 'libtmcsplit.webpack.config.cjs' --stats-error-details",
+    "build-bin":
+      "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details",
     "build":
-      "make build-npm",
+      "npm-run lint && npm run build-fs-worker build-lib build-bin",
     "lint":
       "npx eslint .",
     "publish-pnm":

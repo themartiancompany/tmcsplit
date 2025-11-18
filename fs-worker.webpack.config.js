@@ -3,43 +3,52 @@ let
   _output,
   _output_dir,
   _path;
-_path =
-  require(
-    'path');
-_output_dir =
-  _path.resolve(
-    __dirname);
-_file_name =
-  "fs-worker.js";
+const
+  _path =
+    require(
+      'path');
+const
+  _output_dir =
+    _path.resolve(
+      __dirname);
+const
+  _input_file_name =
+    "fs-worker";
+const
+  _input_file_path =
+    `./node_modules/fs/${_input_file_name}`;
+const
+  _output_file_name =
+    `${_input_file_name}.js`;
 _output = {
   path:
     _output_dir,
   filename:
-    _file_name
+    _output_file_name
 }
 
 module.exports = {
   entry:
-    './node_modules/crash-js/crash-js/fs-worker',
+    _input_file_path,
   output:
     _output,
   optimization: {
     moduleIds: 'deterministic',
   },
   resolve: {
-    fallback: {
+    alias: {
       "fs":
-        false,
-      "happy-opfs":
         _path.resolve(
           __dirname,
-          'node_modules/happy-opfs/dist/main.mjs'),
+          'node_modules/fs/fs'),
+      "opfs":
+        _path.resolve(
+          __dirname,
+          'node_modules/fs/fs'),
       "path":
-        false,
-      "@std/path":
         _path.resolve(
           __dirname,
-          'node_modules/@std/path/mod.js'),
-    }
+          'node_modules/path/mod.js'),
+    },
   }
 };
