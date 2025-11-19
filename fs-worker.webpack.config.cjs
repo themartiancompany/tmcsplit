@@ -1,8 +1,3 @@
-let
-  _file_name,
-  _output,
-  _output_dir,
-  _path;
 const
   _path =
     require(
@@ -25,8 +20,7 @@ _output = {
     _output_dir,
   filename:
     _output_file_name
-}
-
+};
 module.exports = {
   entry:
     _input_file_path,

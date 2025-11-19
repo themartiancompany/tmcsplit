@@ -17,6 +17,7 @@
     "AUTHORS.rst",
     "COPYING",
     "README.md",
+    "eslint.config.mjs",
     "package.json",
     "tmcsplit.js",
     "tmcsplit",
@@ -84,7 +85,7 @@
     "build-bin":
       "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details",
     "build":
-      "npm-run lint && npm run build-fs-worker build-lib build-bin",
+      "npm run lint && npm run build-fs-worker && npm run build-lib && npm run build-bin",
     "lint":
       "npx eslint .",
     "publish-pnm":

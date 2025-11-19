@@ -52,6 +52,7 @@ NPM_FILES=\
   "README.md" \
   "COPYING" \
   "AUTHORS.rst" \
+  "eslint.config.mjs" \
   "fs-worker.webpack.config.cjs" \
   "lib$(_PROJECT)" \
   "lib$(_PROJECT).webpack.config.cjs" \
@@ -98,12 +99,8 @@ build-man:
 
 build-npm:
 
-	mkdir \
-	  -p \
-	  "build/man"
-	rst2man \
-	  "man/$(_PROJECT).1.rst" \
-	  "build/$(_PROJECT).1"
+	make \
+	  build-man
 	cp \
 	  -r \
 	  $(NPM_FILES) \
@@ -117,16 +114,13 @@ build-npm:
 	      "version")"; \
 	npm \
 	  install; \
-	webpack \
-	  --mode \
-	    "production" \
-	  --config \
-	    "webpack.config.js" \
-	  --stats-error-details; \
+	npm \
+	  run \
+	    "build"; \
 	npm \
 	  pack; \
 	mv \
-	  "$(_NAMESPACE)-$(_PROJECT)-$${_version}.tgz" \
+	  "$(_PROJECT)-$${_version}.tgz" \
 	  ".."
 
 install-npm:
@@ -144,7 +138,7 @@ install-npm:
 	npm \
 	  install \
 	    "$${_npm_opts[@]}" \
-	    "$(_NAMESPACE)-$(_PROJECT)-$${_version}.tgz"; \
+	    "$(_PROJECT)-$${_version}.tgz"; \
 	$(_INSTALL_DIR) \
 	  "$(DESTDIR)$(PREFIX)/lib"; \
 	ln \

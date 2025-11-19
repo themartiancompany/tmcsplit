@@ -23,15 +23,13 @@ const
       _output_file_name
 };
 const
-  _yargs_ignore = {
-    resourceRegExp:
-      /^yargs$/
-}
+  _yargs_ignore =
+  { resourceRegExp:
+      /^yargs$/ };
 const
   _yargs_helpers_ignore = {
     resourceRegExp:
-      /^yargs\/helpers$/
-}
+      /^yargs\/helpers$/ };
 const
   _webpack =
     require(
