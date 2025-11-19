@@ -31,6 +31,14 @@ const
   { resourceRegExp:
       /^web-worker$/ };
 const
+  _yargs_ignore =
+  { resourceRegExp:
+      /^yargs$/ };
+const
+  _yargs_helpers_ignore =
+  { resourceRegExp:
+      /^yargs\/helpers$/ };
+const
   _webpack =
     require(
      "webpack");

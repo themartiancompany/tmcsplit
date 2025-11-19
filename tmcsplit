@@ -198,7 +198,7 @@ function
     "y";
   runtime_environment =
     "node";
-  _cmline_parse_help(
+  _cmdline_parse_help(
     _argv);
   _input_args_check(
     _argv);
