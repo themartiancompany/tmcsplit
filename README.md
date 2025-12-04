@@ -82,7 +82,7 @@ or if you install it as a
   https://github.com/themartiancompany/dogeos)
 package from the
 [Ur](
-  https://github.com/themartiancompany)
+  https://github.com/themartiancompany/ur)
 
 ```bash
 ur \
