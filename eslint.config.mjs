@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /**    ----------------------------------------------------------------------
@@ -45,7 +44,9 @@ export default defineConfig([
  { files:
      [ "**/*js,mjs,cjs}",
        `**/${_project}*`,
-       `**/lib${_project}` ],
+       `**/lib${_project}`,
+       "man/**"
+     ],
    plugins:
      { js },
    extends:
@@ -57,7 +58,9 @@ export default defineConfig([
  { files:
      [ "**/*.js",
        `**/${_project}*`,
-       `**/lib${_project}` ],
+       `**/lib${_project}`,
+       "man/**"
+     ],
    languageOptions:
      { sourceType:
          "commonjs" } },

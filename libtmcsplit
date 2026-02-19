@@ -21,6 +21,13 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+/* eslint
+     no-unused-vars: [
+       "error",
+       { "vars":
+           "local",
+         "varsIgnorePattern":
+           "_ls" } ] */
 
 const
   _split_file =
@@ -30,26 +37,23 @@ const
   _libcrash =
   require(
     'crash-js');
-_error_display =
-  _libcrash._error_display;
-_ext_rm =
-  _libcrash._ext_rm;
-_file_read =
-  _libcrash._file_read;
-_file_write =
-  _libcrash._file_write;
-_fs_worker_start =
-  _libcrash._fs_worker_start;
-_json_read =
-  _libcrash._json_read;
-_ls =
-  _libcrash._ls;
-_mkdir =
-  _libcrash._mkdir;
-_msg_info =
-  _libcrash._msg_info;
-_msg_error =
-  _libcrash._msg_error;
+const
+  _fs_worker_start =
+    _libcrash._fs_worker_start;
+// _json_read =
+//   _libcrash._json_read;
+const
+  _ls =
+    _libcrash._ls;
+const
+  _mkdir =
+    _libcrash._mkdir;
+const
+  _msg_info =
+    _libcrash._msg_info;
+// const
+//   _msg_error =
+//     _libcrash._msg_error;
 
 async function
   _split(
@@ -58,21 +62,22 @@ async function
     _chunks_amount,
     _size_max) {
   let
-    _agent,
-    _dir_content,
-    _content,
-    _dir,
-    _file,
-    _msg,
-    _worker;
-  // _dir =
-  //   "/test_dir";
-  // _file =
-  //   `${_dir}/test_file`;
+    _msg;
+  const
+    _dir =
+      "test_dir";
+  const
+    _file =
+      `${_dir}/test_file`;
   // _content =
   //   `${_target_message} ${_target_planet}`;
-  await _fs_worker_start(
-      "fs-worker.js");
+  const
+    _fs_worker_path =
+      "fs-worker.js";
+  const
+    _fs_worker =
+      await _fs_worker_start(
+          _fs_worker_path);
   _msg =
     `Splitting '${_input_file}' ` +
     `into '${chunks_amount}' of size '${_size_max}'` +

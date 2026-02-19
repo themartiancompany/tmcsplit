@@ -64,8 +64,8 @@
       "^17.3.0",
     "@eslint/js":
       "^10.0.1",
-    "parcel":
-      "^2.16.0",
+    "safely-serve":
+      "^0.0.9",
     "webpack":
       "^5.102.1",
     "webpack-cli":
@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.70",
+      "^0.1.72",
     "split-file":
       "npm:@themartiancompany/split-file@2.3.2"
   },
@@ -95,7 +95,7 @@
     "publish-pnm":
       "npm run build && npm publish --access public",
     "start":
-      "npx parcel serve index.html --port 3000 --https --no-cache",
+      "npx safely-serve --help # index.html --port 3000 --https --no-cache",
     "test":
       "echo \"Error: no test specified\" && exit 1"
   }
