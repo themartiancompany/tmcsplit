@@ -28,35 +28,73 @@
 
 const
   _libcrash =
-  require(
-    'crash-js');
-_cmdline_check =
-  _libcrash._cmdline_check;
+    require(
+      'crash-js');
+/* global
+     _cmdline_check */
+const
+  _cmdline_check =
+    _libcrash._cmdline_check;
+/* global
+     _msg_info */
+const
 _msg_info =
   _libcrash._msg_info;
+/* global
+     _msg_error */
+const
 _msg_error =
   _libcrash._msg_error;
 const
   _split_module =
     require(
       "./libtmcsplit");
-_tmcsplit =
-  _split_module._tmcsplit;
+/* global
+     _tmcsplit */
+const
+  _tmcsplit =
+    _split_module._tmcsplit;
 
 function
   _global_variables() {
+  /* global
+       app_name:
+         writable */
   app_name =
     "tmcsplit";
+  /* global
+       app_opts:
+         writable */
+  app_opts =
+    [];
+  /* global
+       suffix_length:
+         writable */
   suffix_length =
     "";
+  /* global
+       chunks_amount:
+         writable */
   chunks_amount =
     "";
+  /* global
+       string_length:
+         writable */
   string_length =
     "";
+  /* global
+       size_max:
+         writable */
   size_max =
     "";
+  /* global
+       output_prefix:
+         writable */
   output_prefix =
     "";
+  /* global
+       quiet:
+         writable */
   quiet =
     "";
 }
