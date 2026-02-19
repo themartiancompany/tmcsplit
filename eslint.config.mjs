@@ -46,7 +46,7 @@ export default defineConfig([
    languageOptions:
      { globals:
          {  ...globals.browser,
-            ...globals.node} }
+            ...globals.node} },
    ignores: [
      "build/**",
      "eslint.config.js"
@@ -64,7 +64,7 @@ export default defineConfig([
      ],
    languageOptions:
      { sourceType:
-         "commonjs" }
+         "commonjs" },
    ignores: [
      "build/**",
      "eslint.config.js"
