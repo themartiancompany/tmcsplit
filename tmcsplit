@@ -26,6 +26,14 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/* eslint
+     no-unused-vars: [
+       "error",
+       { "vars":
+           "local",
+         "argsIgnorePattern":
+           "output_prefix" } ] */
+
 const
   _libcrash =
     require(
@@ -77,11 +85,8 @@ function
          writable */
   chunks_amount =
     "";
-  /* global
-       string_length:
-         writable */
-  string_length =
-    "";
+  // string_length =
+  //   "";
   /* global
        size_max:
          writable */
@@ -114,17 +119,17 @@ function
 function
   _config_show() {
   let
-    _line,
-    _text;
-  _text = [
-    `${app_name} configuration:`,
-    `      Runtime environment:   ${runtime_environment}`,
-    `            Suffix length:   ${suffix_length}`,
-    `       Maximum chunk size:   ${size_max} bytes`,
-    `         Amount of chunks:   ${chunks_amount}`,
-    `                  In file:   ${input_file}`,
-    `         Out files prefix:   ${output_prefix}`,
-  ];
+    _line;
+  const
+    _text = [
+      `${app_name} configuration:`,
+      `      Runtime environment:   ${runtime_environment}`,
+      `            Suffix length:   ${suffix_length}`,
+      `       Maximum chunk size:   ${size_max} bytes`,
+      `         Amount of chunks:   ${chunks_amount}`,
+      `                  In file:   ${input_file}`,
+      `         Out files prefix:   ${output_prefix}`,
+    ];
   for ( _line of _text ) {
     _msg_info(
       _line);
@@ -135,60 +140,65 @@ function
   _usage(
     _exit_code) {
   let
-    _line,
-    _text;
-  _text = [
-    "Output pieces of FILE to PREFIXaa, PREFIXab, ...",
-    "default size is 1000 lines, and default PREFIX is 'x'.",
-    "",
-    "Usage:",
-    "",
-    "  tmcsplit",
-    "    <in-file>",
-    "    <out-txt-prefix>",
-    "",
-    "  arguments:",
-    "    <in-file>                        An input file.",
-    "    <out-file-prefix>                Prefix for the output file(s).",
-    "",
-    "  options:",
-    "",
-    "     -a, --suffix-length=N           Generate suffixes of length N",
-    `                                     Default: '${suffix_length}'`,
-    "     --additional-suffix=SUFFIX      append an additional SUFFIX",
-    "                                     to file names",
-    "     -b, --bytes=SIZE                Put SIZE bytes per output file",
-    "     -C, --line-bytes=SIZE           Put at most SIZE bytes of",
-    "                                     records per output file.",
-    "     -d                              Use numeric suffixes starting",
-    "                                     at 0, not alphabetic",
-    "     --numeric-suffixes[=FROM]       Same as -d, but allow setting",
-    "                                     the start value.",
-    "     -l, --lines=NUMBER              Put NUMBER lines/records per",
-    "                                     output file.",
-    "     -n, --number=CHUNKS             Generate CHUNKS output files;",
-    "                                     see explanation below",
-    "     -t, --separator=SEP             Use SEP instead of newline as",
-    "                                     the record separator;",
-    "                                     '\0' (zero) specifies the",
-    "                                     NUL character.",
-    "",
-    "     -h --help                       This message.",
-    "     -v --verbose                    Enable verbose output.",
-    "",
-    "The SIZE argument is an integer and optional",
-    "unit (example: 10K is 10*1024).",
-    "Units are K,M,G,T,P,E,Z,Y,R,Q (powers of 1024)",
-    "or KB,MB,... (powers of 1000).",
-    "Binary prefixes can be used, too: KiB=K, MiB=M, and so on.",
-    "",
-    "CHUNKS may be:",
-    "  N       split into N files based on size of input",
-    "  K/N     output Kth of N to standard output",
-    "  l/N     split into N files without splitting lines/records",
-    "  l/K/N   output Kth of N to standard output without",
-    "          splitting lines/records",
-  ];
+    _line;
+  const
+    _text = [
+      "Output pieces of FILE to PREFIXaa, PREFIXab, ...",
+      "default size is 1000 lines, and default PREFIX is 'x'.",
+      "",
+      "Usage:",
+      "",
+      "  tmcsplit",
+      "    <in-file>",
+      "    <out-txt-prefix>",
+      "",
+      "  arguments:",
+      "    <in-file>                      An input file.",
+      "    <out-file-prefix>              Prefix for the output",
+      "                                   file(s).",
+      "",
+      "  options:",
+      "",
+      "     -a, --suffix-length=N         Generate suffixes of",
+      "                                   length N.",
+      `                                   Default: '${suffix_length}'`,
+      "     --additional-suffix=SUFFIX    append an additional SUFFIX",
+      "                                   to file names.",
+      "     -b, --bytes=SIZE              Put SIZE bytes per output",
+      "                                   file.",
+      "     -C, --line-bytes=SIZE         Put at most SIZE bytes of",
+      "                                   records per output file.",
+      "     -d                            Use numeric suffixes",
+      "                                   starting at 0, not",
+      "                                   alphabetic.",
+      "     --numeric-suffixes[=FROM]     Same as -d, but allow",
+      "                                   setting the start value.",
+      "     -l, --lines=NUMBER            Put NUMBER lines/records",
+      "                                   per output file.",
+      "     -n, --number=CHUNKS           Generate CHUNKS output",
+      "                                   files; see explanation",
+      "                                   below",
+      "     -t, --separator=SEP           Use SEP instead of newline",
+      "                                   as the record separator;",
+      "                                   '\0' (zero) specifies the",
+      "                                   NUL character.",
+      "",
+      "     -h --help                     This message.",
+      "     -v --verbose                  Enable verbose output.",
+      "",
+      "The SIZE argument is an integer and optional",
+      "unit (example: 10K is 10*1024).",
+      "Units are K,M,G,T,P,E,Z,Y,R,Q (powers of 1024)",
+      "or KB,MB,... (powers of 1000).",
+      "Binary prefixes can be used, too: KiB=K, MiB=M, and so on.",
+      "",
+      "CHUNKS may be:",
+      "  N       split into N files based on size of input",
+      "  K/N     output Kth of N to standard output",
+      "  l/N     split into N files without splitting lines/records",
+      "  l/K/N   output Kth of N to standard output without",
+      "          splitting lines/records",
+    ];
   for ( _line of _text ) {
     _msg_info(
       _line);
@@ -315,6 +325,7 @@ function
 }
 
 _global_variables();
+_overrides_set();
 if ( _cmdline_check(
        "tmcsplit") == true ) {
   _cmdline_parse();
