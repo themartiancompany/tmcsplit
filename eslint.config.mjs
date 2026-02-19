@@ -32,8 +32,18 @@ const
     "tmcsplit";
 
 export default defineConfig([
- {  },
- { files:
+ {
+   ignores: [
+     "build/**",
+     "eslint.config.js",
+     "man/**"
+   ],
+   rules:
+     { semi:
+         "error",
+       "prefer-const":
+         "error" },
+   files:
      [ "**/*js,mjs,cjs}",
        `**/${_project}*`,
        `**/lib${_project}`,
@@ -46,33 +56,24 @@ export default defineConfig([
    languageOptions:
      { globals:
          {  ...globals.browser,
-            ...globals.node} },
+            ...globals.node } } },
+ { 
    ignores: [
      "build/**",
-     "eslint.config.js"
+     "eslint.config.js",
      "man/**"
    ],
    rules:
      { semi:
          "error",
        "prefer-const":
-         "error" } },
- { files:
+         "error" },
+   files:
      [ "**/*.js",
        `**/${_project}*`,
        `**/lib${_project}`,
      ],
    languageOptions:
      { sourceType:
-         "commonjs" },
-   ignores: [
-     "build/**",
-     "eslint.config.js"
-     "man/**"
-   ],
-   rules:
-     { semi:
-         "error",
-       "prefer-const":
-         "error" } },
+         "commonjs" } },
 ]);
