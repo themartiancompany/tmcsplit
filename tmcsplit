@@ -113,7 +113,7 @@ function
   input_file =
     "";
   /* global
-       quiet:
+       output_prefix:
          writable */
   output_prefix =
     "";
@@ -122,6 +122,9 @@ function
          writable */
   quiet =
     "";
+  /* global
+       verbose:
+         writable */
   verbose =
     "";
 }

@@ -80,7 +80,10 @@
   "type":
     "commonjs",
   "main":
-    "tmcsplit",
+    "libtmcsplit",
+  "bin":
+    { "tmcsplit":
+        "tmcsplit" },
   "scripts": {
     "build-fs-worker":
       "npx webpack --mode 'production' --config 'fs-worker.webpack.config.cjs' --stats-error-details",
