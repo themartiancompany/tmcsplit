@@ -39,6 +39,11 @@ const
     require(
       'crash-js');
 /* global
+     _argv_url_get */
+const
+_argv_url_get =
+  _libcrash._argv_url_get;
+/* global
      _cmdline_check */
 const
   _cmdline_check =
@@ -46,13 +51,18 @@ const
 /* global
      _msg_info */
 const
-_msg_info =
-  _libcrash._msg_info;
+  _msg_info =
+    _libcrash._msg_info;
 /* global
      _msg_error */
 const
 _msg_error =
   _libcrash._msg_error;
+/* global
+     _yargv_get */
+const
+_yargv_get =
+  _libcrash._yargv_get;
 const
   _split_module =
     require(
@@ -76,6 +86,11 @@ function
   app_opts =
     [];
   /* global
+       runtime_environment:
+         writable */
+  runtime_environment =
+    "";
+  /* global
        suffix_length:
          writable */
   suffix_length =
@@ -93,7 +108,12 @@ function
   size_max =
     "";
   /* global
-       output_prefix:
+       input_file:
+         writable */
+  input_file =
+    "";
+  /* global
+       quiet:
          writable */
   output_prefix =
     "";
@@ -101,6 +121,8 @@ function
        quiet:
          writable */
   quiet =
+    "";
+  verbose =
     "";
 }
 
@@ -112,7 +134,7 @@ function
   }
   if ( output_prefix == "" ) {
     output_prefix =
-      _input_file + ".";
+      input_file + ".";
   }
 }
 
@@ -210,13 +232,12 @@ function
 function
   _cmdline_parse_help(
     _argv) {
-  let
-    _help_display;
-  _help_display =
-    _argv[
-      "help"] ||
-    _argv[
-      "h"];
+  const
+    _help_display =
+      _argv[
+        "help"] ||
+      _argv[
+        "h"];
   if ( _help_display ) {
     quiet =
       "n";
@@ -230,8 +251,9 @@ function
     _argv) {
   if ( _argv[
          "_"].length < 1 ) {
-    _msg =
-      "Input file argument required.";
+    const
+      _msg =
+        "Input file argument required.";
     _msg_error(
       _msg,
       0);
@@ -242,11 +264,9 @@ function
 
 function 
   _cmdline_parse() {
-  let
-    _argv,
-    _msg;
-  _argv =
-    _yargv_get();
+  const
+    _argv =
+      _yargv_get();
   quiet = 
     "y";
   runtime_environment =
@@ -262,7 +282,7 @@ function
   if ( _argv[
          "_"].length < 2 ) {
     output_prefix =
-      input_file + "."
+      `${input_file}.`;
   }
   if ( "a" in _argv ) {
     suffix_length =
@@ -297,27 +317,26 @@ function
 
 function
   _url_parse() {
-  let
-    _argv;
+  const
+    _argv =
+      _argv_url_get();
   runtime_environment =
     "browser";
-  _argv =
-    _argv_url_get();
   input_file =
-    _argv_url_get(
-      "input_file")[
+    _argv[
+      "input_file"][
         0];
   output_prefix =
-    _argv_url_get(
-      "output_prefix")[
+    _argv_url_get[
+      "output_prefix"][
         0];
   chunks_amount =
-    _argv_url_get(
-      "chunks_amount")[
+    _argv_url_get[
+      "chunks_amount"][
         0];
   quiet =
-    _argv_url_get(
-      "quiet");
+    _argv_url_get[
+      "quiet"];
   if ( quiet.length === 0 ) {
     quiet =
       "n";
