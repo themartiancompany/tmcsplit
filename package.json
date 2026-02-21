@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.72",
+      "^0.1.73",
     "split-file":
       "npm:@themartiancompany/split-file@2.3.2"
   },
