@@ -35,9 +35,13 @@
            "_ls" } ] */
 
 const
-  _split_file =
-  require(
-    'split-file');
+  _split_file_module =
+    require(
+      'split-file');
+_split_file_callback_get =
+  _split_file_module._split_file_callback_get
+_split_file =
+  _split_file_module._split_file
 const
   _libcrash =
   require(
@@ -56,9 +60,22 @@ const
 const
   _msg_info =
     _libcrash._msg_info;
-// const
-//   _msg_error =
-//     _libcrash._msg_error;
+const
+  _msg_error =
+    _libcrash._msg_error;
+
+function
+  _error_handle(
+    _error) {
+    const
+      _msg =
+        "An error occurred:";
+    _msg_error(
+      _msg,
+      0);
+    console.error(
+      _error);
+}
 
 async function
   _split(
@@ -68,6 +85,16 @@ async function
     _size_max) {
   let
     _msg;
+  const
+    _chunks_amount_not_number =
+      isNaN(_chunks_amount);
+  if ( _chunks_amount_not_number ) {
+    _msg =
+      "Chunks amount must be a number."
+    _msg_error(
+      _msg,
+      1);
+  }
   const
     _dir =
       "test_dir";
@@ -95,24 +122,22 @@ async function
     _msg);
   console.log(
     _split_file._split_file);
-  _parts_amount_not_number =
-    isNaN(_parts_amount);
-  if ( _parts_amount_not_number ) {
-    return this._usage();
+  const
+    _split_file_callback =
+      _split_file_callback_get();
+  if ( _chunks_amount > 0 ) {
+    _split_file(
+      _input_file,
+      _chunks_amount).then(
+      _split_file_callback).catch(
+        _error_handle);
   }
-  _split_file_callback =
-    _split_file_callback_get();
-  _split_file(
-    _input_file,
-    _parts_amount).then(
-    _split_file_callback).catch(
-      _error_handle);
   // await _mkdir(
   //   _dir);
-  _msg =
-    `Downloading a file for testing.`;
-  _msg_info(
-    _msg);
+  // _msg =
+  //   `Downloading a file for testing.`;
+  // _msg_info(
+  //   _msg);
   // _downloaded_file =
   //   await _file_download(
   //     "")
