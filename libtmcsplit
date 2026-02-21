@@ -133,9 +133,6 @@ async function
       _size_max);
   console.log(
     _split_file_by_size);
-  const
-    _split_file_callback =
-      _split_file_callback_get();
   if ( _chunks_amount > 0 ) {
     const
       _split_file_callback =
@@ -152,7 +149,7 @@ async function
         _split_file_by_size_callback_get();
     _split_file_by_size(
       _input_file,
-      _size_max) //.then(
+      _size_max) // .then(
       // _split_file_by_size_callback).catch(
       //   _error_handle);
   }
