@@ -30,20 +30,12 @@
      no-unused-vars: [
        "error",
        { "vars":
-           "local",
-         "varsIgnorePattern":
-           "_ls" } ] */
+           "local" } ] */
 
 const
   _split_file_module =
     require(
       'split-file');
-const
-  _split_file_callback_get =
-    _split_file_module._split_file_callback_get;
-const
-  _split_file_by_size_callback_get =
-    _split_file_module._split_file_by_size_callback_get;
 const
   _split_file =
     _split_file_module._split_file;
@@ -54,36 +46,12 @@ const
   _libcrash =
     require(
       'crash-js');
-// const
-//   _fs_worker_start =
-//     _libcrash._fs_worker_start;
-// _json_read =
-//   _libcrash._json_read;
-const
-  _ls =
-    _libcrash._ls;
-// const
-//   _mkdir =
-//     _libcrash._mkdir;
 const
   _msg_info =
     _libcrash._msg_info;
 const
   _msg_error =
     _libcrash._msg_error;
-
-function
-  _error_handle(
-    _error) {
-    const
-      _msg =
-        "An error occurred:";
-    _msg_error(
-      _msg,
-      0);
-    console.error(
-      _error);
-}
 
 async function
   _split(
@@ -103,25 +71,6 @@ async function
       _msg,
       1);
   }
-  const
-    _dir =
-      "test_dir";
-  const
-    _file =
-      `${_dir}/test_file`;
-  // _content =
-  //   `${_target_message} ${_target_planet}`;
-  // const
-  //   _fs_worker_path =
-  //     "fs-worker.js";
-  // const
-  //   _fs_worker =
-  //     await _fs_worker_start(
-  //         _fs_worker_path);
-  console.log(
-    _file);
-  // console.log(
-  //   _fs_worker);
   _msg =
     `Splitting '${_input_file}' ` +
     `into '${_chunks_amount}' of size '${_size_max}' ` +
@@ -131,17 +80,10 @@ async function
   _size_max =
     Number(
       _size_max);
-  console.log(
-    _split_file_by_size);
   if ( _chunks_amount > 0 ) {
-    const
-      _split_file_callback =
-        _split_file_callback_get();
     _split_file(
       _input_file,
-      _chunks_amount).then(
-      _split_file_callback).catch(
-        _error_handle);
+      _chunks_amount);
   }
   else if ( _size_max > 0 ) {
     await _split_file_by_size(
