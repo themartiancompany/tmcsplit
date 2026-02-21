@@ -91,6 +91,11 @@ function
   runtime_environment =
     "";
   /* global
+       numeric_suffix:
+         writable */
+  numeric_suffix =
+    "";
+  /* global
        suffix_length:
          writable */
   suffix_length =
