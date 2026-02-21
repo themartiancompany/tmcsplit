@@ -38,25 +38,33 @@ const
   _split_file_module =
     require(
       'split-file');
-_split_file_callback_get =
-  _split_file_module._split_file_callback_get
-_split_file =
-  _split_file_module._split_file
+const
+  _split_file_callback_get =
+    _split_file_module._split_file_callback_get;
+const
+  _split_file_by_size_callback_get =
+    _split_file_module._split_file_by_size_callback_get;
+const
+  _split_file =
+    _split_file_module._split_file;
+const
+  _split_file_by_size =
+    _split_file_module._split_file_by_size;
 const
   _libcrash =
-  require(
-    'crash-js');
-const
-  _fs_worker_start =
-    _libcrash._fs_worker_start;
+    require(
+      'crash-js');
+// const
+//   _fs_worker_start =
+//     _libcrash._fs_worker_start;
 // _json_read =
 //   _libcrash._json_read;
 const
   _ls =
     _libcrash._ls;
-const
-  _mkdir =
-    _libcrash._mkdir;
+// const
+//   _mkdir =
+//     _libcrash._mkdir;
 const
   _msg_info =
     _libcrash._msg_info;
@@ -90,7 +98,7 @@ async function
       isNaN(_chunks_amount);
   if ( _chunks_amount_not_number ) {
     _msg =
-      "Chunks amount must be a number."
+      "Chunks amount must be a number.";
     _msg_error(
       _msg,
       1);
@@ -116,21 +124,37 @@ async function
   //   _fs_worker);
   _msg =
     `Splitting '${_input_file}' ` +
-    `into '${_chunks_amount}' of size '${_size_max}'` +
+    `into '${_chunks_amount}' of size '${_size_max}' ` +
     `into files with prefix '${_output_prefix}':`;
   _msg_info(
     _msg);
+  _size_max =
+    Number(
+      _size_max);
   console.log(
-    _split_file._split_file);
+    _split_file_by_size);
   const
     _split_file_callback =
       _split_file_callback_get();
   if ( _chunks_amount > 0 ) {
+    const
+      _split_file_callback =
+        _split_file_callback_get();
     _split_file(
       _input_file,
       _chunks_amount).then(
       _split_file_callback).catch(
         _error_handle);
+  }
+  else if ( _size_max > 0 ) {
+    const
+      _split_file_by_size_callback =
+        _split_file_by_size_callback_get();
+    _split_file_by_size(
+      _input_file,
+      _size_max) //.then(
+      // _split_file_by_size_callback).catch(
+      //   _error_handle);
   }
   // await _mkdir(
   //   _dir);
