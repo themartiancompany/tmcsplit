@@ -76,17 +76,17 @@ async function
       `${_dir}/test_file`;
   // _content =
   //   `${_target_message} ${_target_planet}`;
-  const
-    _fs_worker_path =
-      "fs-worker.js";
-  const
-    _fs_worker =
-      await _fs_worker_start(
-          _fs_worker_path);
+  // const
+  //   _fs_worker_path =
+  //     "fs-worker.js";
+  // const
+  //   _fs_worker =
+  //     await _fs_worker_start(
+  //         _fs_worker_path);
   console.log(
     _file);
-  console.log(
-    _fs_worker);
+  // console.log(
+  //   _fs_worker);
   _msg =
     `Splitting '${_input_file}' ` +
     `into '${_chunks_amount}' of size '${_size_max}'` +
@@ -95,8 +95,8 @@ async function
     _msg);
   console.log(
     _split_file);
-  await _mkdir(
-    _dir);
+  // await _mkdir(
+  //   _dir);
   _msg =
     `Downloading a file for testing.`;
   _msg_info(

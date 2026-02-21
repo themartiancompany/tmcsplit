@@ -70,8 +70,8 @@ const
 /* global
      _tmcsplit */
 const
-  _tmcsplit =
-    _split_module._tmcsplit;
+  _split =
+    _split_module._split;
 
 function
   _global_variables() {
@@ -225,7 +225,7 @@ function
       "          splitting lines/records",
     ];
   for ( _line of _text ) {
-    _msg_info(
+    console.log(
       _line);
   }
   process.exit(
@@ -297,12 +297,21 @@ function
       _argv[
         "suffix-length"];
   }
+  if ( "d" in _argv ) {
+    numeric_suffix =
+      true;
+  }
+  if ( "suffix-length" in _argv ) {
+    suffix_length =
+      _argv[
+        "suffix-length"];
+  }
   chunks_amount =
     _argv[
       "chunks-amount"] ||
     _argv[
       "n"];
-  chunks_amount =
+  size_max =
     _argv[
       "size-max"] ||
     _argv[
@@ -362,6 +371,6 @@ app_opts = [
   chunks_amount,
   size_max
 ];
-_tmcsplit.apply(
+_split.apply(
   null,
   app_opts);
