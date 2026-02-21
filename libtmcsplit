@@ -94,7 +94,19 @@ async function
   _msg_info(
     _msg);
   console.log(
-    _split_file);
+    _split_file._split_file);
+  _parts_amount_not_number =
+    isNaN(_parts_amount);
+  if ( _parts_amount_not_number ) {
+    return this._usage();
+  }
+  _split_file_callback =
+    _split_file_callback_get();
+  _split_file(
+    _input_file,
+    _parts_amount).then(
+    _split_file_callback).catch(
+      _error_handle);
   // await _mkdir(
   //   _dir);
   _msg =
