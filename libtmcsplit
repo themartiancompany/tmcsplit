@@ -144,51 +144,10 @@ async function
         _error_handle);
   }
   else if ( _size_max > 0 ) {
-    const
-      _split_file_by_size_callback =
-        _split_file_by_size_callback_get();
-    _split_file_by_size(
+    await _split_file_by_size(
       _input_file,
-      _size_max) // .then(
-      // _split_file_by_size_callback).catch(
-      //   _error_handle);
+      _size_max);
   }
-  // await _mkdir(
-  //   _dir);
-  // _msg =
-  //   `Downloading a file for testing.`;
-  // _msg_info(
-  //   _msg);
-  // _downloaded_file =
-  //   await _file_download(
-  //     "")
-  // console.log(
-  //   _downloaded_file);
-  // _msg =
-  //   `Writing content '${_content}' to file '${_file}':`;
-  // _msg_info(
-  //   _msg);
-  // _file_write(
-  //   _file,
-  //   _content);
-  // _msg =
-  //   `Content of directory '/':`;
-  // _msg_info(
-  //   _msg);
-  // _dir_content =
-  //   _ls(
-  //     "/").unwrap();
-  // console.log(
-  //   _dir_content);
-  // _msg =
-  //   `Content of directory '${_dir}':`;
-  // _msg_info(
-  //   _msg);
-  // _dir_content =
-  //   _ls(
-  //     _dir).unwrap();
-  // console.log(
-  //   _dir_content);
 }
 
 module.exports = {
