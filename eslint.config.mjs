@@ -35,6 +35,7 @@ export default defineConfig([
  {
    ignores: [
      "build/**",
+     "node_modules/**",
      "eslint.config.js",
      "man/**"
    ],
@@ -46,8 +47,7 @@ export default defineConfig([
    files:
      [ "**/*js,mjs,cjs}",
        `**/${_project}*`,
-       `**/lib${_project}`,
-       "man/**"
+       `**/lib${_project}`
      ],
    plugins:
      { js },
@@ -61,6 +61,7 @@ export default defineConfig([
    ignores: [
      "build/**",
      "eslint.config.js",
+     "node_modules/**",
      "man/**"
    ],
    rules:
