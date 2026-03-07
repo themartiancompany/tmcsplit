@@ -2,7 +2,7 @@
   "name":
     "tmcsplit",
   "version":
-    "0.0.2",
+    "0.0.4",
   "description":
     "Basic Javascript implementation of GNU Split.",
   "funding": {
@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.73",
+      "^0.1.76",
     "split-file":
       "npm:@themartiancompany/split-file@2.3.12"
   },
