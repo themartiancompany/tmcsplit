@@ -119,6 +119,8 @@ build-npm:
 	      "$$(pwd)" \
 	      "version")"; \
 	npm \
+	  install; \
+	npm \
 	  install \
 	  --save-dev; \
 	npm \
