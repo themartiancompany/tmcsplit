@@ -110,7 +110,7 @@ build-npm:
 	cp \
 	  -r \
 	  $(NPM_FILES) \
-	  "build"; \
+	  "build"
 	cd \
 	  "build"; \
 	_version="$$( \
@@ -129,7 +129,7 @@ build-npm:
 	  audit \
 	  fix \
 	  --force || \
-	true;
+	true; \
 	npm \
 	  run \
 	    "build"; \
