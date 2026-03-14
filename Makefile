@@ -123,7 +123,7 @@ build-npm:
 	  "$${PWD}"; \
 	npm \
 	  install \
-	  "$${PWD}"; \
+	  "$${PWD}" \
 	  --save-dev; \
 	npm \
 	  audit \
