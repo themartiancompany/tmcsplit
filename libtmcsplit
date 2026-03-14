@@ -63,8 +63,8 @@ async function
     _msg;
   const
     _chunks_amount_not_number =
-      isNaN(
-        _chunks_amount);
+      typeof(
+        _chunks_amount) !== "number";
   if ( _chunks_amount_not_number ) {
     _msg =
       "Chunks amount must be a number.";

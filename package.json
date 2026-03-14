@@ -2,7 +2,7 @@
   "name":
     "tmcsplit",
   "version":
-    "0.0.4",
+    "0.0.5",
   "description":
     "Basic Javascript implementation of GNU Split.",
   "funding": {
