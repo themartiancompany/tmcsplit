@@ -96,7 +96,7 @@
     "lint":
       "npx eslint .",
     "publish-npm":
-      "npm run build && npm publish --access public",
+      "npm lint && npm run build && npm publish --access public",
     "start":
       "npx safely-serve --help # index.html --port 3000 --https --no-cache",
     "test":
