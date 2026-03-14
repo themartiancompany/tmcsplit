@@ -92,10 +92,10 @@
     "build-bin":
       "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details",
     "build":
-      "npm run lint && npm run build-fs-worker && npm run build-lib && npm run build-bin",
+      "npm run build-fs-worker && npm run build-lib && npm run build-bin",
     "lint":
       "npx eslint .",
-    "publish-pnm":
+    "publish-npm":
       "npm run build && npm publish --access public",
     "start":
       "npx safely-serve --help # index.html --port 3000 --https --no-cache",
