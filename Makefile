@@ -119,9 +119,11 @@ build-npm:
 	      "$$(pwd)" \
 	      "version")"; \
 	npm \
-	  install; \
+	  install \
+	  "$${PWD}"; \
 	npm \
 	  install \
+	  "$${PWD}"; \
 	  --save-dev; \
 	npm \
 	  audit \
