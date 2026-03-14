@@ -47,11 +47,59 @@ const
     require(
       'crash-js');
 const
+  _basename =
+    _libcrash._basename;
+const
+  _dirname =
+    _libcrash._dirname;
+const
+  _ls =
+    _libcrash._ls;
+const
   _msg_info =
     _libcrash._msg_info;
 const
   _msg_error =
     _libcrash._msg_error;
+
+async function
+  _output_prefix_fix(
+    _input_file,
+    _output_prefix) {
+  let
+    _dir,
+    _dir_content,
+    _file,
+    _part_no,
+    _pattern;
+  _file_name =
+    _basename(
+      _input_file);
+  _pattern =
+    `${_file_name}.sf-part`
+  _dir =
+    _dirname(
+      _input_file);
+  _dir_content =
+    _ls(
+      _dir);
+  for ( _file of _dir_content ) {
+    if ( _file.startsWith(
+           _pattern)) {
+      _part_no =
+        _file.replace(
+          _pattern,
+          "");
+      _mv(
+        `${_input_file}.sf-part${_part_no}`,
+        `${_output_prefix}${_part_no}`);
+    }
+  }
+  console.log(
+    typeof(_dir_content));
+  console.log(
+    _dir_content);
+}
 
 async function
   _split(
@@ -82,7 +130,7 @@ async function
     Number(
       _size_max);
   if ( _chunks_amount > 0 ) {
-    _split_file(
+    await _split_file(
       _input_file,
       _chunks_amount);
   }
@@ -91,6 +139,9 @@ async function
       _input_file,
       _size_max);
   }
+  _output_fix(
+    _input_file,
+    _output_prefix);
 }
 
 module.exports = {
