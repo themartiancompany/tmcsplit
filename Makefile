@@ -119,7 +119,8 @@ build-npm:
 	      "$$(pwd)" \
 	      "version")"; \
 	npm \
-	  install; \
+	  install \
+	  --save-dev; \
 	npm \
 	  audit \
 	  fix \
