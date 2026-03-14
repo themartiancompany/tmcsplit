@@ -70,6 +70,11 @@ eslint:
 	npm \
 	  install \
 	  --save-dev; \
+	npm \
+	  audit \
+	  fix \
+	  --force || \
+	true;
 	npx \
 	  eslint \
 	    "."
@@ -115,6 +120,11 @@ build-npm:
 	      "version")"; \
 	npm \
 	  install; \
+	npm \
+	  audit \
+	  fix \
+	  --force || \
+	true;
 	npm \
 	  run \
 	    "build"; \
