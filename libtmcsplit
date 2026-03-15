@@ -63,26 +63,29 @@ const
     _libcrash._msg_error;
 
 async function
-  _output_prefix_fix(
+  _output_files_get(
     _input_file,
     _output_prefix) {
   let
-    _dir,
-    _dir_content,
     _file,
-    _part_no,
-    _pattern;
-  _file_name =
-    _basename(
-      _input_file);
-  _pattern =
-    `${_file_name}.sf-part`
-  _dir =
-    _dirname(
-      _input_file);
-  _dir_content =
-    _ls(
-      _dir);
+    _output_file,
+    _output_files,
+    _part_no;
+  const
+    _file_name =
+      _basename(
+        _input_file);
+  const
+    _pattern =
+      `${_file_name}.sf-part`
+  const
+    _dir =
+      _dirname(
+        _input_file);
+  const
+    _dir_content =
+      _ls(
+        _dir);
   for ( _file of _dir_content ) {
     if ( _file.startsWith(
            _pattern)) {
@@ -90,15 +93,16 @@ async function
         _file.replace(
           _pattern,
           "");
+      _output_file =
+        `${_output_prefix}${_part_no}`;
       _mv(
         `${_input_file}.sf-part${_part_no}`,
-        `${_output_prefix}${_part_no}`);
+        _output_file);
+      _output_files.push(
+        _output_file);
     }
   }
-  console.log(
-    typeof(_dir_content));
-  console.log(
-    _dir_content);
+  return _output_files;
 }
 
 async function
@@ -139,7 +143,7 @@ async function
       _input_file,
       _size_max);
   }
-  _output_fix(
+  _output_files_get(
     _input_file,
     _output_prefix);
 }
