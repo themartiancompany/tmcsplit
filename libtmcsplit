@@ -61,6 +61,9 @@ const
 const
   _msg_error =
     _libcrash._msg_error;
+const
+  _mv =
+    _libcrash._mv;
 
 async function
   _output_files_get(
@@ -68,9 +71,12 @@ async function
     _output_prefix) {
   let
     _file,
+    _mv_args,
     _output_file,
     _output_files,
     _part_no;
+  _output_files =
+    [];
   const
     _file_name =
       _basename(
@@ -95,9 +101,12 @@ async function
           "");
       _output_file =
         `${_output_prefix}${_part_no}`;
-      _mv(
+      _mv_args = [
         `${_input_file}.sf-part${_part_no}`,
-        _output_file);
+        _output_file
+      ];
+      _mv(
+        _mv_args);
       _output_files.push(
         _output_file);
     }
@@ -112,7 +121,8 @@ async function
     _chunks_amount,
     _size_max) {
   let
-    _msg;
+    _msg,
+    _output_files;
   const
     _chunks_amount_not_number =
       typeof(
@@ -143,9 +153,11 @@ async function
       _input_file,
       _size_max);
   }
-  _output_files_get(
-    _input_file,
-    _output_prefix);
+  _output_files =
+    _output_files_get(
+      _input_file,
+      _output_prefix);
+  return _output_files;
 }
 
 module.exports = {
