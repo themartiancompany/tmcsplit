@@ -22,6 +22,10 @@
 
 # The Martian Company's Split (`tmcsplit`)
 
+[![NPM version](
+  https://img.shields.io/npm/last-update/tmcsplit)](
+    https://npmjs.org/package/tmcsplit)
+
 Javascript GNU Split rewrite.
 
 Splittable with number of parts or maximum bytes per part.
