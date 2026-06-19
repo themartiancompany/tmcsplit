@@ -105,7 +105,8 @@ async function
         `${_input_file}.sf-part${_part_no}`,
         _output_file
       ];
-      _mv(
+      _mv.apply(
+        null,
         _mv_args);
       _output_files.push(
         _output_file);

@@ -21,6 +21,21 @@ _output = {
   filename:
     _output_file_name
 };
+const
+  _node_fs_ignore =
+  { resourceRegExp:
+      /^node:fs$/ };
+const
+  _webpack =
+    require(
+     "webpack");
+const
+  _ignore_plugin =
+    _webpack.IgnorePlugin; 
+const
+  _node_fs_ignore_plugin =
+    new _ignore_plugin(
+          _node_fs_ignore);
 module.exports = {
   entry:
     _input_file_path,
@@ -44,5 +59,8 @@ module.exports = {
           __dirname,
           'node_modules/path/mod.js'),
     },
-  }
+  },
+  plugins: [
+    _node_fs_ignore_plugin,
+  ]
 };
