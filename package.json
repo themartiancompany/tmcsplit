@@ -17,14 +17,14 @@
     "AUTHORS.rst",
     "COPYING",
     "README.md",
+    "dist",
     "eslint.config.mjs",
     "package.json",
-    "tmcsplit.js",
     "tmcsplit",
-    "fs-worker.js",
     "fs-worker.webpack.config.cjs",
     "index.html",
     "serve.json",
+    "libtmcsplit",
     "libtmcsplit.webpack.config.cjs",
     "webpack.config.cjs"
   ],
@@ -86,11 +86,11 @@
         "tmcsplit" },
   "scripts": {
     "build-fs-worker":
-      "npx webpack --mode 'production' --config 'fs-worker.webpack.config.cjs' --stats-error-details",
+      "npx webpack --mode 'production' --config 'fs-worker.webpack.config.cjs' --stats-error-details && cp 'fs-worker.js' 'dist/libtmcsplit' && cp 'fs-worker.js' 'dist/tmcsplit'",
     "build-lib":
-      "npx webpack --mode 'production' --config 'libtmcsplit.webpack.config.cjs' --stats-error-details",
+      "npx webpack --mode 'production' --config 'libtmcsplit.webpack.config.cjs' --stats-error-details && cp 'libtmcsplit.js' 'dist/libtmcsplit'",
     "build-bin":
-      "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details",
+      "npx webpack --mode 'production' --config 'webpack.config.cjs' --stats-error-details&& cp 'tmcsplit.js' 'dist/tmcsplit'",
     "build":
       "npm run build-fs-worker && npm run build-lib && npm run build-bin",
     "lint":
@@ -98,7 +98,7 @@
     "publish-npm":
       "npm lint && npm run build && npm publish --access public",
     "start":
-      "npx safely-serve --help # index.html --port 3000 --https --no-cache",
+      "npx safely-serve 'dist/tmcsplit'",
     "test":
       "echo \"Error: no test specified\" && exit 1"
   }

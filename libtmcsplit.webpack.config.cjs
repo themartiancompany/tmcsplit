@@ -47,13 +47,9 @@ const
       _output_file_name
 };
 const
-  _utils_ignore =
+  _node_fs_ignore =
   { resourceRegExp:
-      /^utils$/ };
-const
-  _web_worker_ignore =
-  { resourceRegExp:
-      /^web-worker$/ };
+      /^node:fs$/ };
 const
   _yargs_ignore =
   { resourceRegExp:
@@ -70,13 +66,9 @@ const
   _ignore_plugin =
     _webpack.IgnorePlugin; 
 const
-  _utils_ignore_plugin =
+  _node_fs_ignore_plugin =
     new _ignore_plugin(
-          _utils_ignore);
-const
-  _web_worker_ignore_plugin =
-    new _ignore_plugin(
-          _web_worker_ignore);
+          _node_fs_ignore);
 const
   _yargs_ignore_plugin =
     new _ignore_plugin(
@@ -121,6 +113,8 @@ module.exports = {
           'node_modules/yargs-parser/browser.mjs'),
     },
     fallback: {
+      "node:fs":
+        false,
       "utils":
         false,
       "web-worker":
@@ -135,6 +129,7 @@ module.exports = {
     { yargs:
         'yargs' },
   plugins: [
+    _node_fs_ignore_plugin,
     _yargs_ignore_plugin,
     _yargs_helpers_ignore_plugin
   ]
