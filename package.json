@@ -2,7 +2,7 @@
   "name":
     "tmcsplit",
   "version":
-    "0.0.11",
+    "0.0.12",
   "description":
     "Basic Javascript implementation of GNU Split.",
   "funding": {
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.27",
+      "^0.0.53",
     "eslint":
       "^10.0.3",
     "globals":
@@ -65,20 +65,20 @@
     "@eslint/js":
       "^10.0.1",
     "safely-serve":
-      "^0.0.9",
+      "^0.0.14",
     "webpack":
-      "^5.102.1",
+      "^5.109.2",
     "webpack-cli":
-      "^6.0.1"
+      "^7.2.2"
   },
   "dependencies": {
-    "crash-js":
-      "^0.1.133",
+    "libcrash-js":
+      "npm:crash-js@^0.1111111111111111.1111111111111111",
     "split-file":
       "npm:@themartiancompany/split-file@2.3.15"
   },
   "type":
-    "commonjs",
+    "module",
   "main":
     "libtmcsplit",
   "bin":

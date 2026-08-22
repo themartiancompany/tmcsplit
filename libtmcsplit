@@ -33,37 +33,61 @@
            "local" } ] */
 
 const
-  _split_file_module =
-    require(
-      'split-file');
-const
-  _split_file =
-    _split_file_module._split_file;
-const
-  _split_file_by_size =
-    _split_file_module._split_file_by_size;
+  _libcrash_module =
+    await import(
+      "libcrash-js");
 const
   _libcrash =
-    require(
-      'crash-js');
+    _libcrash_module.default;
+/* global
+     _basename */
 const
   _basename =
     _libcrash._basename;
+/* global
+     _dirname */
 const
   _dirname =
     _libcrash._dirname;
+/* global
+     _ls */
 const
   _ls =
     _libcrash._ls;
-const
-  _msg_info =
-    _libcrash._msg_info;
+/* global
+     _msg_error */
 const
   _msg_error =
     _libcrash._msg_error;
+/* global
+     _msg_info */
+const
+  _msg_info =
+    _libcrash._msg_info;
+/* global
+     _mv */
 const
   _mv =
     _libcrash._mv;
+/* global
+     _require */
+const
+  _require =
+    _libcrash._require;
+const
+  _split_file_module =
+    await _require(
+      "split-file");
+/* global
+     _split_file */
+const
+  _split_file =
+    _split_file_module._split_file;
+/* global
+     _split_file_by_size */
+const
+  _split_file_by_size =
+    _split_file_module._split_file_by_size;
 
 async function
   _output_files_get(
@@ -161,7 +185,15 @@ async function
   return _output_files;
 }
 
-module.exports = {
-  _split:
-    _split
+// ES exports
+
+export {
+  _split
 };
+
+// Common Javascript exports
+
+// module.exports = {
+//   _split:
+//     _split
+// };
