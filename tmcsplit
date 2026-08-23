@@ -36,9 +36,12 @@
            "output_prefix" } ] */
 
 const
+  _libcrash_module =
+    await import(
+      'libcrash-js');
+const
   _libcrash =
-    require(
-      'crash-js');
+    _libcrash_module.default;
 /* global
      _argv_url_get */
 const
@@ -50,6 +53,16 @@ const
   _cmdline_check =
     _libcrash._cmdline_check;
 /* global
+     _echo */
+const
+  _echo =
+    _libcrash._echo;
+/* global
+     _exit */
+const
+  _exit =
+    _libcrash._exit;
+/* global
      _msg_info */
 const
   _msg_info =
@@ -60,13 +73,23 @@ const
 _msg_error =
   _libcrash._msg_error;
 /* global
+     _override_set */
+const
+  _override_set =
+    _libcrash._override_set;
+/* global
+     _require */
+const
+_require =
+  _libcrash._require;
+/* global
      _yargv_get */
 const
 _yargv_get =
   _libcrash._yargv_get;
 const
   _split_module =
-    require(
+    await _require(
       "./libtmcsplit");
 /* global
      _tmcsplit */
@@ -79,59 +102,82 @@ function
   /* global
        app_name:
          writable */
-  app_name =
-    "tmcsplit";
+  _override_set(
+    "app",
+    "name",
+    "tmcsplit");
   /* global
        app_opts:
          writable */
-  app_opts =
-    [];
+  _override_set(
+    "app",
+    "opts",
+    []);
   /* global
        runtime_environment:
          writable */
-  runtime_environment =
-    "";
+  _override_set(
+    "runtime",
+    "environment",
+    "");
   /* global
        numeric_suffix:
          writable */
-  numeric_suffix =
-    "";
+  _override_set(
+    "numeric",
+    "suffix",
+    "");
   /* global
        suffix_length:
          writable */
-  suffix_length =
-    "";
+  _override_set(
+    "suffix",
+    "length",
+    "");
   /* global
        chunks_amount:
          writable */
-  chunks_amount =
-    "";
+  _override_set(
+    "chunks",
+    "amount",
+    "");
   // string_length =
   //   "";
   /* global
        size_max:
          writable */
-  size_max =
-    "";
+  _override_set(
+    "size",
+    "max",
+    "");
   /* global
        input_file:
          writable */
-  input_file =
-    "";
+  _override_set(
+    "input",
+    "file",
+    "");
   /* global
        output_prefix:
          writable */
-  output_prefix =
-    "";
+  _override_set(
+    "output",
+    "prefix",
+    "");
   /* global
        quiet:
          writable */
-  quiet =
+  const
+    _global =
+      _global_get();
+  _global[
+    "quiet"] =
     "";
   /* global
        verbose:
          writable */
-  verbose =
+  _global[
+    "verbose"] =
     "";
 }
 
@@ -231,10 +277,10 @@ function
       "          splitting lines/records",
     ];
   for ( _line of _text ) {
-    console.log(
+    _echo(
       _line);
   }
-  process.exit(
+  _exit(
     _exit_code);
 }
 
@@ -364,7 +410,7 @@ function
 _global_variables();
 _overrides_set();
 if ( _cmdline_check(
-       "tmcsplit") == true ) {
+       "tmcsplit") ) {
   _cmdline_parse();
 }
 else {

@@ -99,6 +99,10 @@ module.exports = {
         _path.resolve(
           __dirname,
           'node_modules/path/mod.js'),
+      "split":
+        _path.resolve(
+          __dirname,
+          'libtmcsplit'),
       "web-worker":
         _path.resolve(
           __dirname,

@@ -29,6 +29,7 @@ SHELL ?= bash
 PREFIX ?= /usr/local
 _PROGRAM=split
 _PROJECT=tmc$(_PROGRAM)
+_PROJECT_NPM=@themartiancompany/$(_PROJECT)
 _NAMESPACE=themartiancompany
 DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/$(_PROJECT)
 USR_DIR=$(DESTDIR)$(PREFIX)
