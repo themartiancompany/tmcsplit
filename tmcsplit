@@ -334,7 +334,7 @@ function
   }
 }
 
-await function 
+async function 
   _cmdline_parse() {
   const
     _argv =
@@ -454,7 +454,7 @@ _global_variables();
 _overrides_set();
 if ( _cmdline_check(
        "tmcsplit") ) {
-  _cmdline_parse();
+  await _cmdline_parse();
 }
 else {
   _url_parse();
