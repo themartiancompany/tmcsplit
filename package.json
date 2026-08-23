@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "crash-js-webpack":
-      "^0.0.53",
+      "^0.0.56",
     "eslint":
       "^10.0.3",
     "globals":
@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "libcrash-js":
-      "npm:crash-js@^0.1111111111111111.1111111111111111",
+      "npm:crash-js@^11.1000000000000001.1000000000000001",
     "split-file":
       "npm:@themartiancompany/split-file@2.3.15"
   },

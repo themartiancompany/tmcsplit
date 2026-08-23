@@ -90,7 +90,11 @@ module.exports = {
       "fs":
         _path.resolve(
           __dirname,
-          'node_modules/fs/fs'),
+          'node_modules/tmcfs/fs'),
+      "opfs":
+        _path.resolve(
+          __dirname,
+          'node_modules/opfs/opfs'),
       "path":
         _path.resolve(
           __dirname,
