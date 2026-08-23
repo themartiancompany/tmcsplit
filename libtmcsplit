@@ -33,12 +33,9 @@
            "local" } ] */
 
 const
-  _libcrash_module =
+  _libcrash =
     await import(
       "libcrash-js");
-const
-  _libcrash =
-    _libcrash_module.default;
 /* global
      _basename */
 const

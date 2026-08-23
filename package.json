@@ -74,7 +74,7 @@
     "libcrash-js":
       "npm:crash-js@^11.1000000000000001.1000000000000001",
     "split-file":
-      "npm:@themartiancompany/split-file@2.3.15"
+      "npm:@themartiancompany/split-file@2.3.17"
   },
   "overrides": {
     "split":

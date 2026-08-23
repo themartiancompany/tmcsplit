@@ -36,12 +36,9 @@
            "output_prefix" } ] */
 
 const
-  _libcrash_module =
+  _libcrash =
     await import(
       'libcrash-js');
-const
-  _libcrash =
-    _libcrash_module.default;
 /* global
      _argv_url_get */
 const
@@ -63,6 +60,16 @@ const
   _exit =
     _libcrash._exit;
 /* global
+     _get */
+const
+  _get =
+    _libcrash._get;
+/* global
+     _global_get */
+const
+  _global_get =
+    _libcrash._global_get;
+/* global
      _msg_info */
 const
   _msg_info =
@@ -83,13 +90,18 @@ const
 _require =
   _libcrash._require;
 /* global
+     _set */
+const
+  _set =
+    _libcrash._set;
+/* global
      _yargv_get */
 const
 _yargv_get =
   _libcrash._yargv_get;
 const
   _split_module =
-    await _require(
+    await import(
       "./libtmcsplit");
 /* global
      _tmcsplit */
@@ -183,14 +195,19 @@ function
 
 function 
   _overrides_set() {
-  if ( suffix_length == "" ) {
-    suffix_length =
-      "base64";
-  }
-  if ( output_prefix == "" ) {
-    output_prefix =
-      input_file + ".";
-  }
+  const
+    _input_file =
+      _get(
+        "input",
+        "file");
+  _override_set(
+    "suffix",
+    "length",
+    "base64");
+  _override_set(
+    "output",
+    "prefix",
+    _input_file);
 }
 
 function
@@ -317,64 +334,90 @@ function
   }
 }
 
-function 
+await function 
   _cmdline_parse() {
   const
     _argv =
-      _yargv_get();
+      await _yargv_get();
   quiet = 
     "y";
-  runtime_environment =
-    "node";
+  _set(
+    "runtime",
+    "environment",
+    "node");
   _cmdline_parse_help(
     _argv);
   _input_args_check(
     _argv);
-  input_file =
+  _set(
+    "input",
+    "file",
     _argv[
       "_"][
-        0];
+        0]);
   if ( _argv[
          "_"].length < 2 ) {
-    output_prefix =
-      `${input_file}.`;
+    _set(
+      "output",
+      "prefix",
+      _get(
+        "input",
+        "file"));
   }
   if ( "a" in _argv ) {
-    suffix_length =
+    _set(
+      "suffix",
+      "length",
       _argv[
-        "a"];
+        "a"]);
   }
   if ( "suffix-length" in _argv ) {
-    suffix_length =
+    _set(
+      "suffix",
+      "length",
       _argv[
-        "suffix-length"];
+        "suffix-length"]);
+  }
+  if ( "suffix-length" in _argv ) {
+    _set(
+      "suffix",
+      "length",
+      _argv[
+        "suffix-length"]);
   }
   if ( "d" in _argv ) {
-    numeric_suffix =
-      true;
+    _set(
+      "numeric",
+      "suffix",
+      true);
   }
-  if ( "suffix-length" in _argv ) {
-    suffix_length =
-      _argv[
-        "suffix-length"];
-  }
-  chunks_amount =
+  _set(
+    "chunks",
+    "amount",
     _argv[
       "chunks-amount"] ||
     _argv[
-      "n"];
-  size_max =
+      "n"]);
+  _set(
+    "chunks",
+    "amount",
     _argv[
       "size-max"] ||
     _argv[
-      "b"];
-  verbose =
+      "b"]);
+  const
+    _global =
+      _global_get();
+  _global[
+    "verbose"] =
     _argv[
       "verbose"] ||
     _argv[
       "v"];
-  if ( verbose ) {
-    quiet =
+  if ( _global[
+         "verbose"] ) {
+    _global[
+      "quiet"] =
       "n";
   }
 }
