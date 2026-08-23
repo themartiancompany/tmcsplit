@@ -261,10 +261,21 @@ install-scripts:
 	      "$(PREFIX)/lib/$(_PROJECT)/nodejs" \
 	      "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT_NPM)"; \
 	  fi; \
-	  $(_MAKE_LINK) \
-	    "$(PREFIX)/lib/$(_PROJECT)/nodejs" \
-	    "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)" || \
-	    true; \
+	  if [[ ! -s "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)" ]]; then \
+	    $(_MAKE_LINK) \
+	      "$(PREFIX)/lib/$(_PROJECT)/nodejs" \
+	      "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROJECT)"
+	  fi; \
+	  if [[ ! -s "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROGRAM)" ]]; then \
+	    $(_MAKE_LINK) \
+	      "$(PREFIX)/lib/$(_PROJECT)/nodejs" \
+	      "$(DESTDIR)$(PREFIX)/lib/node_modules/$(_PROGRAM)"
+	  fi; \
+	  if [[ ! -s "$(DESTDIR)$(PREFIX)/lib/$(_PROGRAM)" ]]; then \
+	    $(_MAKE_LINK) \
+	      "$(PREFIX)/lib/$(_PROJECT)/nodejs" \
+	      "$(DESTDIR)$(PREFIX)/lib/$(_PROGRAM)"
+	  fi; \
 	  cp \
 	    -r \
 	    $$(printf \
