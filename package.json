@@ -22,7 +22,6 @@
     "package.json",
     "tmcsplit",
     "fs-worker.webpack.config.cjs",
-    "index.html",
     "serve.json",
     "libtmcsplit",
     "libtmcsplit.webpack.config.cjs",

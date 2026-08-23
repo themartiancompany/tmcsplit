@@ -38,6 +38,9 @@ const
      "node_modules/**",
      "eslint.config.js",
      "fs-worker.js",
+     "**/*.fs-worker.js",
+     `**/*.${_project}.js`,
+     `**/*.lib${_project}.js`,
      "man/**"
    ];
 export default defineConfig([
@@ -71,9 +74,7 @@ export default defineConfig([
        "prefer-const":
          "error" },
    files:
-     [ "**/*.js",
-       `**/${_project}*`,
-       `**/lib${_project}`,
+     [ "**/*.{cjs,js}",
      ],
    languageOptions:
      { sourceType:

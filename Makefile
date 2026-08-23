@@ -152,6 +152,67 @@ build-npm:
 	  "$(_PROJECT)-$${_version}.tgz" \
 	  ".."
 
+build-webpack:
+
+	cp \
+	  -r \
+	  "$(_PROJECT)" \
+	  "dist" \
+	  "fs-worker.webpack.config.cjs" \
+	  "lib$(_PROJECT)" \
+	  "lib$(_PROJECT).webpack.config.cjs" \
+	  "webpack.config.cjs" \
+	  "build"
+	_webpack=( \
+	  "$$(command \
+	        -v \
+	        "webpack")"; \
+	if [[ "${_webpack}" == "" ]]; then \
+	  _webpack=(
+	    npx
+	      webpack); \
+	fi; \
+	cd \
+	  "build"; \
+	if [[ ! -e "fs-worker.js" ]]; then \
+          "${_webpack[@]}" \
+	    --mode \
+	      'production' \
+	    --config \
+	    'fs-worker.webpack.config.cjs' \
+	    --stats-error-details; \
+	fi; \
+	cp \
+	  'fs-worker.js' \
+	  'dist/$(_PROJECT)/fs-worker.js'; \
+	cp \
+	  'fs-worker.js' \
+	  'dist/lib$(_PROJECT)/fs-worker.js'; \
+	if [[ ! -e "$(_PROJECT).js" ]]; then \
+          "${_webpack[@]}" \
+	    --mode \
+	      'production' \
+	    --config \
+	      'webpack.config.cjs' \
+	    --stats-error-details; \
+	fi; \
+	cp \
+	  "$(_PROJECT).js" \
+	  "dist/$(_PROJECT)/$(_PROJECT).js"; \
+	if [[ ! -e "lib$(_PROJECT).js" ]]; then \
+          "${_webpack[@]}" \
+	    --mode \
+	      'production' \
+	    --config \
+	      'lib$(_PROJECT).webpack.config.cjs' \
+	    --stats-error-details; \
+	fi; \
+	cp \
+	  "lib$(_PROJECT).js" \
+	  "dist/$(_PROJECT)/lib$(_PROJECT).js"
+
+
+
 check: eslint
 
 eslint:
@@ -271,4 +332,16 @@ install-man:
 	  "man/$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/$(_PROJECT).1"
 
-.PHONY: check build build-man build-npm build-webpack install install-doc install-man install-npm install-scripts shellcheck
+uninstall-scripts:
+
+	rm \
+	  -rf \
+	  "$(LIB_DIR)" \
+	  "$(NODE_DIR)"
+
+uninstall-man:
+
+	rm \
+	  "$(MAN_DIR)/man1/$(_PROJECT).1"
+
+.PHONY: check build build-man build-npm build-webpack install install-doc install-man install-npm install-scripts shellcheck uninstall-man uninstall-scripts
