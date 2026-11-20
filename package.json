@@ -62,7 +62,7 @@
     "compression":
       "^1.8.2",
     "crash-js-webpack":
-      "^0.0.86",
+      "^0.0.88",
     "eslint":
       "^10.14.0",
     "globals":
@@ -76,7 +76,7 @@
     "minimatch":
       "^11.0.4",
     "safely-serve":
-      "^0.0.25",
+      "^0.0.26",
     "webpack":
       "^5.109.2",
     "webpack-cli":
@@ -84,11 +84,11 @@
   },
   "dependencies": {
     "libcrash-js":
-      "npm:crash-js@^1000000000000022.1000000000000001.1000000000000001",
+      "npm:crash-js@^1000000000000025.1000000000000001.1000000000000001",
     "minimatch":
       "^11.0.4",
     "split-file":
-      "npm:@themartiancompany/split-file@2.3.21"
+      "npm:@themartiancompany/split-file@2.3.26"
   },
   "overrides": {
     "compression":
