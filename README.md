@@ -48,7 +48,7 @@ with the following command:
 npm \
   install \
     --save \
-    @themartiancompany/tmcsplit
+    tmcsplit
 ```
 
 You can then run the program with
