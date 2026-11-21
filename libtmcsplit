@@ -52,6 +52,11 @@ const
   _dir_exists =
     _libcrash._dir_exists;
 /* global
+     _echo2 */
+const
+  _echo2 =
+    _libcrash._echo2;
+/* global
      _file_exists */
 const
   _file_exists =
@@ -108,14 +113,16 @@ async function
   let
     _cursor,
     _file,
-    _encoded_files,
     _msg,
     _mv_args,
     _output_file,
-    _output_files,
     _part_no;
-  _output_files =
-    [];
+  const
+    _encoded_files =
+      [];
+  const
+    _output_files =
+      [];
   const
     _file_name =
       _basename(
