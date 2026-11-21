@@ -47,6 +47,16 @@ const
   _dirname =
     _libcrash._dirname;
 /* global
+     _dir_exists */
+const
+  _dir_exists =
+    _libcrash._dir_exists;
+/* global
+     _file_exists */
+const
+  _file_exists =
+    _libcrash._file_exists;
+/* global
      _ls */
 const
   _ls =
@@ -61,6 +71,11 @@ const
 const
   _msg_info =
     _libcrash._msg_info;
+/* global
+     _msg_warning */
+const
+  _msg_warning =
+    _libcrash._msg_warning;
 /* global
      _mv */
 const
@@ -91,7 +106,10 @@ async function
     _input_file,
     _output_prefix) {
   let
+    _cursor,
     _file,
+    _encoded_files,
+    _msg,
     _mv_args,
     _output_file,
     _output_files,
@@ -111,7 +129,7 @@ async function
         _input_file);
   const
     _dir_content =
-      _ls(
+      await _ls(
         _dir);
   for ( _file of _dir_content ) {
     if ( _file.startsWith(
@@ -120,20 +138,189 @@ async function
         _file.replace(
           _pattern,
           "");
+      _input_file =
+        `${_input_file}.sf-part${_part_no}`,
       _output_file =
         `${_output_prefix}${_part_no}`;
-      _mv_args = [
-        `${_input_file}.sf-part${_part_no}`,
-        _output_file
-      ];
-      _mv.apply(
-        null,
-        _mv_args);
+      _encoded_files.push(
+        _input_file);
       _output_files.push(
         _output_file);
     }
   }
+  _cursor =
+    0;
+  for ( _file of _encoded_files ) {
+    _output_file =
+      _output_files[
+        _cursor];
+    _mv_args = [
+      _file,
+      _output_file
+    ];
+    _mv.apply(
+      null,
+      _mv_args);
+    _cursor =
+      _cursor + 1;
+  }
   return _output_files;
+}
+
+function
+  _input_file_check(
+    _input_file) {
+  let
+    _msg;
+  const
+    _input_file_type =
+      typeof(
+        _input_file);
+  if ( _input_file_type === "undefined" ) {
+    _msg =
+      "Input file is undefined.";
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
+  }
+  else if ( _input_file_type === "string" ) {
+    if ( _input_file.length < 1 ) {
+      _msg =
+        "Input file is an empty string.";
+      _msg_error(
+        _msg,
+        0);
+      throw _msg;
+    }
+  }
+  else if ( _input_file_type === "number" ) {
+    _input_file =
+      String(
+        _input_file);
+    _msg =
+      "Input file path variable was a number, " +
+      "not a string.";
+    _msg_warning(
+      _msg);
+  }
+  else {
+    _msg =
+      "Input file variable should be a string.";
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
+  }
+  if ( ! _file_exists(
+           _input_file) ) {
+    _msg =
+      "Input file " +
+      `'${_input_file}' does not exist.`;
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
+  }
+  return _input_file;
+}
+
+function
+  _output_prefix_check(
+    _output_prefix,
+    _input_file) {
+  let
+    _msg,
+    _output_prefix_get;
+  _output_prefix_get =
+    false;
+  const
+    _output_prefix_type =
+      typeof(
+        _output_prefix);
+  if ( _output_prefix_type === "undefined" ) {
+    _msg =
+      "Output prefix variable is undefined, " +
+      "setting default (same as input file).";
+    _msg_info(
+      _msg);
+    _output_prefix_get =
+      true;
+  }
+  else if ( _output_prefix_type === "string" ) {
+    if ( _output_prefix.length < 1 ) {
+      _msg =
+        "Output prefix variable is an empty string, " +
+        "setting default (same as input file).";
+      _msg_info(
+        _msg);
+    }
+  }
+  else if ( _output_prefix_type === "number" ) {
+    _output_prefix =
+      String(
+        _output_prefix);
+  }
+  else if ( _output_prefix_type === "object" ) {
+    _output_prefix_keys =
+      Object.keys(
+        _output_prefix);
+    if ( _output_prefix_keys.length < 1 ) {
+      _msg =
+        "Output prefix variable is an empty object, " +
+        "setting default (same as input file).";
+      _msg_info(
+        _msg);
+    }
+    else {
+      _msg =
+        "Output prefix variable has type " +
+        `'${_output_prefix_type}', but it should be ` +
+        "a file path pattern (a string).";
+      _msg_error(
+        _msg,
+        0);
+      throw _msg;
+    }
+  }
+  else {
+    _msg =
+      "Output prefix variable has type " +
+      `'${_output_prefix_type}', but it should be ` +
+      "a file path pattern (a string).";
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
+  }
+  if ( _output_prefix_get ) {
+    const
+      _input_file_type =
+        typeof(
+          _input_file);
+    if ( _input_file_type === "string" ) {
+      if ( 0 < _input_file.length ) {
+        _output_prefix =
+          _input_file;
+      }
+    }
+  }
+  const
+    _output_dir =
+      _dirname(
+        _output_prefix);
+  if ( ! _dir_exists(
+           _output_dir) ) {
+    _msg =
+      "Output directory " +
+      `'${_output_dir}' does not ` +
+      "exist.";
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
+  }
+  return _output_prefix;
 }
 
 async function
@@ -145,6 +332,38 @@ async function
   let
     _msg,
     _output_files;
+  try {
+    _input_file =
+      _input_file_check(
+        _input_file);
+  }
+  catch(
+    _error) {
+    _msg =
+      "Error running '_input_file_check'.";
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+    throw _error;
+  }
+  try {
+    _output_prefix =
+      _output_prefix_check(
+        _output_prefix);
+  }
+  catch(
+    _error) {
+    _msg =
+      "Error running '_output_prefix_check'.";
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _error);
+    throw _error;
+  }
   const
     _chunks_amount_not_number =
       typeof(
