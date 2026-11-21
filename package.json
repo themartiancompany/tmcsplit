@@ -62,7 +62,7 @@
     "compression":
       "^1.8.2",
     "crash-js-webpack":
-      "^0.0.88",
+      "^0.0.89",
     "eslint":
       "^10.14.0",
     "globals":
