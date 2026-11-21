@@ -351,7 +351,8 @@ async function
   try {
     _output_prefix =
       _output_prefix_check(
-        _output_prefix);
+        _output_prefix,
+        _input_file);
   }
   catch(
     _error) {
@@ -373,7 +374,8 @@ async function
       "Chunks amount must be a number.";
     _msg_error(
       _msg,
-      1);
+      0);
+    throw _msg;
   }
   _msg =
     `Splitting '${_input_file}' ` +
