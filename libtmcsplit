@@ -116,7 +116,8 @@ async function
     _msg,
     _mv_args,
     _output_file,
-    _part_no;
+    _part_no,
+    _src_file;
   const
     _encoded_files =
       [];
@@ -145,12 +146,12 @@ async function
         _file.replace(
           _pattern,
           "");
-      _input_file =
+      _src_file =
         `${_input_file}.sf-part${_part_no}`,
       _output_file =
         `${_output_prefix}${_part_no}`;
       _encoded_files.push(
-        _input_file);
+        _src_file);
       _output_files.push(
         _output_file);
     }
